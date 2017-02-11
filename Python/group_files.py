@@ -4,29 +4,36 @@
 # You would like have them all in one folder and cut-paste would take ages.
 # Usage: run the script in a Linux command line interface (bash, terminal) or
 # Windows 10's Linux bash subsystem as: python PATH_TO_THE_SCRIPT/group_files.py
-# in the folder where you would like to group those files together.
+# in the folder where you would like to group those files together or add
+# the path of the folder in the end of the command as an argument:
+# python PATH_TO_THE_SCRIPT/group_files.py PATH_TO_THE_FOLDEER.
 # P.S. Files with identical names are treated, _n is added (n as number).
 
 from os.path import exists
-import os, shutil
+import os, sys, shutil
 
-path = './'
+try:
+    path = sys.argv[1]
+except:
+    path = './'
 dirs = os.listdir(path)
 q = raw_input('Are you sure? (y/n)\n').upper()
 c = 2
 
 if q == 'Y' or q == 'YES':
-	for dir in dirs:
-		for file in os.listdir(dir):
-			if not exists(path + file):
-				shutil.move(path + dir + '/' + file, path + file)
-				print 'Moved file from ' + path + dir + '/' + file + ' to ' + path + file
-			else:
-				shutil.move(path + dir + '/' + file, path + file + '_' + str(c))
-				print 'Moved file from ' + path + dir + '/' + file + ' to ' + path + file + '_' + str(c)
-				c += 1
-			print ''
-		shutil.rmtree(path + '/' + dir, ignore_errors=True)
-		print 'Deleted directory ' + path + dir
+    for dir in dirs:
+        if os.path.isdir(dir):
+            for file in os.listdir(dir):
+                if file.endswith('mkv') or file.endswith('mp4') or file.endswith('avi') or file.endswith('srt'):
+                    if not exists(path + file):
+                        shutil.move(path + dir + '/' + file, path + file)
+                        print 'Moved file from ' + path + dir + '/' + file + ' to ' + path + file
+                    else:
+                        shutil.move(path + dir + '/' + file, path + file + '_' + str(c))
+                        print 'Moved file from ' + path + dir + '/' + file + ' to ' + path + file + '_' + str(c)
+                        c += 1
+                    print ''
+            shutil.rmtree(path + '/' + dir, ignore_errors=True)
+            print 'Deleted directory ' + path + dir
 else:
-	print 'Exit'
+    print 'Exit'

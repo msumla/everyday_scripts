@@ -16,24 +16,32 @@ try:
     path = sys.argv[1]
 except:
     path = './'
+try:
+    ext = sys.argv[1]
+except:
+    ext = 'srt'
+#try:
+#	sim = sys.argv[1]
+#except:
+#	sim = shutil.move
 dirs = os.listdir(path)
-q = raw_input('Are you sure? (y/n)\n').upper()
+q = input('Are you sure? (y/n)\n').upper()
 c = 2
 
 if q == 'Y' or q == 'YES':
     for dir in dirs:
         if os.path.isdir(dir):
             for file in os.listdir(dir):
-                if file.endswith('mkv') or file.endswith('mp4') or file.endswith('avi') or file.endswith('srt'):
+                if file.endswith('mkv') or file.endswith('mp4') or file.endswith('avi') or file.endswith('mp3') or file.endswith(ext):
                     if not exists(path + file):
                         shutil.move(path + dir + '/' + file, path + file)
-                        print 'Moved file from ' + path + dir + '/' + file + ' to ' + path + file
+                        print('Moved file from ' + path + dir + '/' + file + ' to ' + path + file)
                     else:
-                        shutil.move(path + dir + '/' + file, path + file + '_' + str(c))
-                        print 'Moved file from ' + path + dir + '/' + file + ' to ' + path + file + '_' + str(c)
+                        shutil.move(path + dir + '/' + file, path + file[:len(str(file))-4] + '_' + str(c) + file[len(str(file))-4:])
+                        print('Moved file from ' + path + dir + '/' + file + ' to ' + path + file[:len(str(file))-4] + '_' + str(c) + file[len(str(file))-4:])
                         c += 1
-                    print ''
             shutil.rmtree(path + '/' + dir, ignore_errors=True)
-            print 'Deleted directory ' + path + dir
+            print('Deleted directory ' + path + dir)
+            print('')
 else:
-    print 'Exit'
+    print('Exit')

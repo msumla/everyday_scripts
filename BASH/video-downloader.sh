@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Open the developer menu in the browser and filter out .ts files. Play the video and wait for the first segment to copy the hyperlink.
+
 link1=$1
 counter=$2
 link2=$3

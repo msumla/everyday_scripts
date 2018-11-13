@@ -15,32 +15,41 @@ then
     read -p 'Sisesta video faili asukoht: ' filepath
 fi
 
-outfile=$filepath.mp4
+logfile=$filepath.log
+outfile=$filepath
 dir=`dirname $outfile`
 file=`basename $outfile`
 
-if [[ ! -d $dir ]]
+if [[ -f $logfile ]]
 then
-    mkdir -p $dir
-    echo Kaust \"$dir\" loodud
+	rm $logfile 2>> $logfile
 fi
 
 if [[ -f $outfile ]]
 then
-	rm $outfile 2> /dev/null
+	rm $outfile 2>> $logfile
+fi
+
+if [[ ! -d $dir ]]
+then
+    mkdir -p $dir
+    echo Loodud kaust \"$dir\".
+    echo Loodud kaust \"$dir\". >> $logfile
 fi
 
 while true
 do
     link=$link1$counter$link2
-    wget -q $link -O ->> $outfile
+    wget -q $link -O ->> $outfile || wget --no-check-certificate -q $link -O ->> $outfile
 
     if [ $? -eq 0 ]
     then
-        printf "Laen alla video osa nr \"$counter\"\r" ja kirjutan faili
+        printf "Laen alla video \"$file\" segmenti nr \"$counter\" ..\r"
+        echo Laen alla video \"$file\" segmenti nr \"$counter\" .. >> $logfile
         let counter+=1
     else
-        echo -e "\nVideo fail \"$outfile\"" on salvestatud
+        echo -e "\nVideo fail \"$outfile\" on salvestatud."
+        echo Video fail \"$outfile\" on salvestatud. >> $logfile
         break
     fi
 done

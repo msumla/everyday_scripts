@@ -6,29 +6,32 @@
 # Windows 10's Linux bash subsystem as: python PATH_TO_THE_SCRIPT/group_files.py
 # in the folder where you would like to group those files together or add
 # the path of the folder in the end of the command as an argument:
-# python PATH_TO_THE_SCRIPT/group_files.py PATH_TO_THE_FOLDEER.
+# python PATH_TO_THE_SCRIPT/group_files.py PATH_TO_THE_FOLDER.
+# If you also need to choose an additional file extension to move add it after
+# the folder path argument as a second argument.
 # P.S. Files with identical names are treated, _n is added (n as number).
 
 from os.path import exists
 import os, sys, shutil
 
-try:
+path = './'
+ext = 'srt'
+
+if len(sys.argv) == 2:
     path = sys.argv[1]
-except:
-    path = './'
-try:
-    ext = sys.argv[1]
-except:
-    ext = 'srt'
-#try:
-#	sim = sys.argv[1]
-#except:
-#	sim = shutil.move
+elif len(sys.argv) == 3:
+    path = sys.argv[1]
+    ext = sys.argv[2]
+
+print('Chosen path: "%s", Chosen extension: "%s".' % (path, ext))
+
 dirs = os.listdir(path)
 q = input('Are you sure? (y/n)\n').upper()
 c = 2
 
 if q == 'Y' or q == 'YES':
+    print('\n')
+
     for dir in dirs:
         if os.path.isdir(dir):
             for file in os.listdir(dir):
@@ -44,4 +47,4 @@ if q == 'Y' or q == 'YES':
             print('Deleted directory ' + path + dir)
             print('')
 else:
-    print('Exit')
+    exit('Exited without action')

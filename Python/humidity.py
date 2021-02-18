@@ -5,15 +5,16 @@
 #        <title>Humidity</title>
 #</head>
 #<body>
-#        <a href="humidity-Mon.html">humidity-Mon</a>
-#        <a href="humidity-Tue.html">humidity-Tue</a>
-#        <a href="humidity-Wed.html">humidity-Wed</a>
-#        <a href="humidity-Thu.html">humidity-Thu</a>
-#        <a href="humidity-Fri.html">humidity-Fri</a>
-#        <a href="humidity-Sat.html">humidity-Sat</a>
-#        <a href="humidity-Sun.html">humidity-Sun</a>
+#        <a href="index.html" style="font-size:20px">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
+#        <a href="humidity-Mon.html" style="font-size:10px" target="humidity">humidity-Mon</a>&nbsp;&nbsp;&nbsp;&nbsp;
+#        <a href="humidity-Tue.html" style="font-size:10px" target="humidity">humidity-Tue</a>&nbsp;&nbsp;&nbsp;&nbsp;
+#        <a href="humidity-Wed.html" style="font-size:10px" target="humidity">humidity-Wed</a>&nbsp;&nbsp;&nbsp;&nbsp;
+#        <a href="humidity-Thu.html" style="font-size:10px" target="humidity">humidity-Thu</a>&nbsp;&nbsp;&nbsp;&nbsp;
+#        <a href="humidity-Fri.html" style="font-size:10px" target="humidity">humidity-Fri</a>&nbsp;&nbsp;&nbsp;&nbsp;
+#        <a href="humidity-Sat.html" style="font-size:10px" target="humidity">humidity-Sat</a>&nbsp;&nbsp;&nbsp;&nbsp;
+#        <a href="humidity-Sun.html" style="font-size:10px" target="humidity">humidity-Sun</a>
 #
-#        <iframe src="humidity-Wed.html" style=height:100%;width:100%;border:none;"/>
+#        <iframe src="humidity-Thu.html" style=height:100%;width:100%;border:none;" name="humidity"/>
 #</body>
 
 # configure crontab with the following content

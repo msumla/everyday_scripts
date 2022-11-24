@@ -3,6 +3,16 @@
 # Open the developer menu in the browser and filter out .m3u8 video and audio playlist files.
 # Play the video and wait for the matching files to copy the hyperlinks and pass those to the script.
 
+if ! command -v ffmpeg &> /dev/null; then
+	echo Missing ffmpeg software.
+	return 1
+fi
+
+if ! command -v wget &> /dev/null; then
+	echo Missing wget software.
+	return 1
+fi
+
 video_pl_link=$1
 audio_pl_link=$2
 filepath=$3

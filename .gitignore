@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Media (large binaries — keep out of git)
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.webm
+*.m4v
+*.mpg
+*.mpeg
+*.wmv
+*.flv
+*.ts
+*.m2ts
+*.mp3
+*.aac
+*.m4a
+*.flac
+*.wav
+*.ogg
+*.opus
+*.wma
+*.aiff
+*.aif
